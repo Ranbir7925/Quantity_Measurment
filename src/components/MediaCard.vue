@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .card-container p{
-  flex-direction: column;
+  justify-content: center;
 }
 .selection-container {
   display: flex;
@@ -43,6 +43,25 @@ export default {
   justify-content: center;
   width: 173px;
   height: 137px;
+  border-radius: 7px;
+}
+.length:hover{
+  background-color: #edfdf9;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #0ec098;
+  color: #0ebe98;
+}
+.temperature:hover {
+  background-color: #ffeef0;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #fd5160;
+  color: #fd5160;
+}
+.volume:hover {
+  background-color: #e8ddff;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #7224ff;
+  color: #7224ff;
 }
 .data {
   height: 25%;
