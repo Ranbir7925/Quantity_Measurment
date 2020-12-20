@@ -3,19 +3,12 @@
     <div class="conversion-container">
       FROM
       <div class="input-container">
-        <div class="value">
-          <input type="text" class="textbox" />
-        </div>
+        <input type="text" class="textbox" :value="intialUnitValueTo" />
         <div class="unit">
-          <select name="select-box" id="">
-            <option value="">Kilometer</option>
-            <option value="">Meter</option>
-            <option value="">CentiMeter</option>
-            <option value="">MiliMeter</option>
-            <option value="">MicroMeter</option>
-            <option value="">Mile</option>
-            <option value="">Foot</option>
-            <option value="">Inch</option>
+          <select v-model="subUnitTo">
+            <option v-for="listValue in selectedSubUnit" :key="listValue">
+              {{ listValue }}
+            </option>
           </select>
         </div>
       </div>
@@ -23,19 +16,13 @@
     <div class="conversion-container">
       TO
       <div class="input-container">
-        <div class="value">
-          <input type="text" class="textbox" />
-        </div>
+        <input type="text" class="textbox" :value="intialUnitValueFrom" />
         <div class="unit">
-          <select name="select-box" id="">
-            <option value="">Kilometer</option>
-            <option value="">Meter</option>
-            <option value="">CentiMeter</option>
-            <option value="">MiliMeter</option>
-            <option value="">MicroMeter</option>
-            <option value="">Mile</option>
-            <option value="">Foot</option>
-            <option value="">Inch</option>
+          {{ valuesList }}
+          <select v-model="subUnitFrom">
+            <option v-for="listValue in selectedSubUnit" :key="listValue">
+              {{ listValue }}
+            </option>
           </select>
         </div>
       </div>
@@ -45,53 +32,49 @@
 <script>
 export default {
   name: "Textbox",
-  data() {
-    return {
-      selected: "",
-    };
+  props: ["selectedSubUnit", "subUnitTo", "subUnitFrom", "intialUnitValueTo", "intialUnitValueFrom", "lengthUnits"],
+  created() {
+    this.loadDefault();
+  },
+  methods: {
+    loadDefault() {
+      this.selectedSubUnit = this.lengthUnits;
+      this.subUnitTo = "Meter";
+      this.subUnitFrom = "CentiMeter";
+      this.intialUnitValueTo = 1;
+      this.intialUnitValueFrom = 100;
+    },
   },
 };
 </script>
-<style scoped>
+
+<style >
 .text-box {
   width: 560px;
   display: flex;
   justify-content: space-between;
 }
 .input-container {
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
   width: 260px;
-  height: 96px;
 }
 .textbox {
   padding: 0 10px;
   font-size: larger;
-  width: 100%;
   height: 50px;
   outline: none;
-  background-color: #ededed;
-  border: 0px solid #e7dcfe;
+  background-color: #ffffff;
+  border: 1px solid #f5f6fa;
 }
 .unit select {
   padding: 0 10px;
   width: 100%;
   height: 35px;
   outline: none;
-  background-color: #ededed;
-  border: 1px solid #e7dcfe;
-}
-
-.select-box {
-  max-width: 350px;
-  height: 48px;
-  border: 1px solid #e7dcfe;
-  border-radius: 3px;
-  padding: 15px 27px;
-  font: normal normal normal 15px/19px Montserrat;
-  text-transform: uppercase;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #f5f6fa;
 }
 </style>
